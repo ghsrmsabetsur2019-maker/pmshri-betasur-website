@@ -18,7 +18,7 @@
 //      adds it automatically) to create a login for the Principal and
 //      each Teacher — no code editing needed for that part.
 // ---------------------------------------------------------------------
-const STAFF_FORM_ENDPOINT = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+const STAFF_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwyh7PN0D7RMQxi5d9qzbr0KH2mUzHz4_1kKoDzUqQtWlxlMBA2gh2Zviyt2YY9vHE8eg/exec';
 const STAFF_SESSION_KEY = 'pmshri_staff_session';
 
 let staffSession = null; // { token, role, fullName, expiresAt }
