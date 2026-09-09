@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="kn" data-lang="kn">
+<head>
+<script>(function(){try{var d=document.documentElement;var lang=localStorage.getItem('pmshri-lang');if(lang==='en'||lang==='kn')d.setAttribute('data-lang',lang);var fs=localStorage.getItem('pmshri-fontstep');if(fs!==null){var step=Math.max(-2,Math.min(3,parseInt(fs,10)||0));d.style.fontSize=(16+step*1.5)+'px';}if(localStorage.getItem('pmshri-theme')==='dark')d.classList.add('dark');}catch(e){}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="icons/favicon-32.png" type="image/png">
+<meta name="description" content="Staff Portal for PM Shri Karnataka Public School Betasur — authorised staff only.">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff Portal | PM Shri Karnataka Public School Betasur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Noto+Sans+Kannada:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1C4B3E">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PMShri Betasur">
+<style>
+  .sp-signin{display:flex; flex-direction:column; align-items:center; gap:16px; padding:48px 16px; text-align:center;}
+  .sp-hidden{display:none !important;}
+  .sp-toolbar{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;}
+  .sp-user{font-size:0.85rem; color:var(--ink-soft);}
+  .sp-signout{background:none; border:1px solid var(--line); border-radius:6px; padding:6px 12px; cursor:pointer; font-family:inherit; font-size:0.82rem;}
+  .sp-section{margin-top:36px;}
+  table.staff select{font-family:inherit; font-size:0.85rem; padding:4px 6px; border-radius:4px; border:1px solid var(--line);}
+  .sp-empty{color:var(--ink-soft); font-size:0.9rem; padding:16px 0;}
+  .sp-msg-body{white-space:pre-wrap; max-width:40ch;}
+  .sp-error{color:var(--brick); font-weight:600; padding:12px 0; text-align:center;}
+  .sp-login-form{display:flex; flex-direction:column; gap:14px; width:100%; max-width:320px; text-align:left;}
+  .sp-login-form label{display:flex; flex-direction:column; gap:4px; font-size:0.85rem; font-weight:600; color:var(--ink-soft);}
+  .sp-login-form input{font-family:inherit; font-size:1rem; padding:9px 10px; border-radius:6px; border:1px solid var(--line);}
+  .sp-login-btn{margin-top:4px; background:var(--forest,#1C4B3E); color:#fff; border:none; border-radius:6px; padding:10px 14px; font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;}
+  .sp-login-btn:disabled{opacity:0.6; cursor:default;}
+  .sp-role-badge{display:inline-block; margin-left:8px; padding:2px 9px; border-radius:999px; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; background:var(--forest,#1C4B3E); color:#fff; vertical-align:middle;}
+  .sp-delete-btn{background:none; border:1px solid var(--brick); color:var(--brick); border-radius:6px; padding:4px 10px; font-family:inherit; font-size:0.78rem; cursor:pointer;}
+  .sp-delete-btn:hover{background:var(--brick); color:#fff;}
+  .sp-grade-header td{background:var(--paper-alt,#F4F1EA); font-weight:700; font-size:0.85rem; letter-spacing:0.01em; padding:9px 10px; border-top:2px solid var(--line);}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content"><span class="t-en">Skip to main content</span><span class="t-kn">ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ</span></a>
+
+<div class="a11y-bar">
+  <div class="wrap">
+    <span class="t-en">Text size:</span><span class="t-kn">ಅಕ್ಷರ ಗಾತ್ರ:</span>
+    <button onclick="changeFontSize(-1)" aria-label="Decrease text size">A-</button>
+    <button onclick="resetFontSize()" aria-label="Reset text size">A</button>
+    <button onclick="changeFontSize(1)" aria-label="Increase text size">A+</button>
+    <span class="divider-y"></span>
+    <button id="darkModeToggle" onclick="toggleDarkMode()" aria-pressed="false"><span class="t-en">Dark mode</span><span class="t-kn">ಡಾರ್ಕ್ ಮೋಡ್</span></button>
+  </div>
+</div>
+<div class="topbar">
+  <div class="wrap">
+    <span><span class="tag">UDISE:</span> 29011201001</span>
+    <span class="t-en">PM Shri Karnataka Public School Betasur &middot; Savadatti Taluk, Belagavi District</span>
+    <span class="t-kn">ಪಿ.ಎಂ.ಶ್ರೀ ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಬೆಟಸೂರ &middot; ಸವದತ್ತಿ ತಾಲ್ಲೂಕು, ಬೆಳಗಾವಿ ಜಿಲ್ಲೆ</span>
+  </div>
+</div>
+<header class="main">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img class="crest" src="images/pm-shri-logo.png" alt="PM Shri School Logo">
+      <div>
+        <h1><span class="t-en">PM Shri Karnataka Public School Betasur</span><span class="t-kn">ಪಿ.ಎಂ.ಶ್ರೀ ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಬೆಟಸೂರ</span></h1>
+        <p class="t-en">Government of Karnataka &middot; Dept. of School Education</p>
+        <p class="t-kn">ಕರ್ನಾಟಕ ಸರ್ಕಾರ &middot; ಶಾಲಾ ಶಿಕ್ಷಣ ಇಲಾಖೆ</p>
+      </div>
+    </a>
+    <nav>
+      <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
+      <ul id="mainNav">
+        <li><a class="" href="index.html"><span class="t-en">Home</span><span class="t-kn">ಮುಖಪುಟ</span></a></li>
+<li><a class="" href="about.html"><span class="t-en">About</span><span class="t-kn">ನಮ್ಮ ಬಗ್ಗೆ</span></a></li>
+<li><a class="" href="academics.html"><span class="t-en">Academics</span><span class="t-kn">ಶೈಕ್ಷಣಿಕ</span></a></li>
+<li><a class="" href="admissions.html"><span class="t-en">Admissions</span><span class="t-kn">ಪ್ರವೇಶ</span></a></li>
+<li><a class="" href="facilities.html"><span class="t-en">Facilities</span><span class="t-kn">ಸೌಲಭ್ಯಗಳು</span></a></li>
+<li><a class="" href="staff.html"><span class="t-en">Staff</span><span class="t-kn">ಸಿಬ್ಬಂದಿ</span></a></li>
+<li><a class="" href="notices.html"><span class="t-en">Notices</span><span class="t-kn">ಸೂಚನೆಗಳು</span></a></li>
+<li><a class="" href="downloads.html"><span class="t-en">Downloads</span><span class="t-kn">ಡೌನ್‌ಲೋಡ್‌ಗಳು</span></a></li>
+<li><a class="" href="gallery.html"><span class="t-en">Gallery</span><span class="t-kn">ಗ್ಯಾಲರಿ</span></a></li>
+<li><a class="" href="contact.html"><span class="t-en">Contact</span><span class="t-kn">ಸಂಪರ್ಕ</span></a></li>
+<li><a class="active" href="staff-portal.html"><span class="t-en">Staff Portal</span><span class="t-kn">ಸಿಬ್ಬಂದಿ ಪೋರ್ಟಲ್</span></a></li>
+
+        <li><button id="langToggle" onclick="toggleLang()">English</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="main-content"><div class="wrap">
+<div class="page-banner">
+  <div class="wrap">
+    <span class="eyebrow t-en">Authorised staff only</span><span class="eyebrow t-kn">ಅಧಿಕೃತ ಸಿಬ್ಬಂದಿ ಮಾತ್ರ</span>
+    <h2><span class="t-en">Staff Portal</span><span class="t-kn">ಸಿಬ್ಬಂದಿ ಪೋರ್ಟಲ್</span></h2>
+  </div>
+</div>
+
+<!-- Signed-out view -->
+<div id="sp-signin" class="sp-signin">
+  <p class="t-en">Sign in with the username and password the school office has given you to view admission applications and messages.</p>
+  <p class="t-kn">ಪ್ರವೇಶ ಅರ್ಜಿಗಳು ಮತ್ತು ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಶಾಲಾ ಕಚೇರಿ ನೀಡಿದ ಬಳಕೆದಾರ ಹೆಸರು ಮತ್ತು ಪಾಸ್‌ವರ್ಡ್‌ನೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ.</p>
+  <form id="sp-login-form" class="sp-login-form" autocomplete="on">
+    <label>
+      <span class="t-en">Username</span><span class="t-kn">ಬಳಕೆದಾರ ಹೆಸರು</span>
+      <input type="text" id="sp-username" name="username" autocomplete="username" required>
+    </label>
+    <label>
+      <span class="t-en">Password</span><span class="t-kn">ಪಾಸ್‌ವರ್ಡ್</span>
+      <input type="password" id="sp-password" name="password" autocomplete="current-password" required>
+    </label>
+    <button type="submit" class="sp-login-btn"><span class="t-en">Sign in</span><span class="t-kn">ಸೈನ್ ಇನ್</span></button>
+  </form>
+  <p id="sp-login-error" class="sp-error sp-hidden"></p>
+  <p id="sp-not-configured" class="sp-error sp-hidden">
+    This page isn't connected yet — the school's tech volunteer needs to finish setup. See DEPLOYMENT_GUIDE.md, "Set up the Staff Portal".
+  </p>
+</div>
+
+<!-- Signed-in view -->
+<div id="sp-app" class="sp-hidden">
+  <div class="sp-toolbar">
+    <span class="sp-user t-en">Signed in as <strong id="sp-user-name"></strong><span id="sp-role-badge" class="sp-role-badge"></span></span>
+    <span class="sp-user t-kn">ಸೈನ್ ಇನ್ ಆಗಿದೆ: <strong id="sp-user-name-kn"></strong></span>
+    <button class="sp-signout" onclick="staffSignOut()"><span class="t-en">Sign out</span><span class="t-kn">ಸೈನ್ ಔಟ್</span></button>
+  </div>
+
+  <div id="sp-loading" class="sp-empty"><span class="t-en">Loading…</span><span class="t-kn">ಲೋಡ್ ಆಗುತ್ತಿದೆ…</span></div>
+  <div id="sp-load-error" class="sp-error sp-hidden"></div>
+
+  <div id="sp-data" class="sp-hidden">
+    <h3><span class="t-en">Admission applications</span><span class="t-kn">ಪ್ರವೇಶ ಅರ್ಜಿಗಳು</span></h3>
+    <div style="overflow-x:auto;">
+      <table class="staff" id="sp-applications-table">
+        <thead><tr>
+          <th><span class="t-en">Submitted</span><span class="t-kn">ಸಲ್ಲಿಸಿದ ದಿನಾಂಕ</span></th>
+          <th><span class="t-en">Student</span><span class="t-kn">ವಿದ್ಯಾರ್ಥಿ</span></th>
+          <th><span class="t-en">Parent/Guardian</span><span class="t-kn">ಪೋಷಕರು</span></th>
+          <th><span class="t-en">Contact</span><span class="t-kn">ಸಂಪರ್ಕ</span></th>
+          <th><span class="t-en">Status</span><span class="t-kn">ಸ್ಥಿತಿ</span></th>
+          <th id="sp-app-delete-th" class="sp-hidden"><span class="t-en">Delete</span><span class="t-kn">ಅಳಿಸಿ</span></th>
+        </tr></thead>
+        <tbody id="sp-applications-body"></tbody>
+      </table>
+      <p id="sp-applications-empty" class="sp-empty sp-hidden"><span class="t-en">No applications yet.</span><span class="t-kn">ಇನ್ನೂ ಯಾವುದೇ ಅರ್ಜಿಗಳಿಲ್ಲ.</span></p>
+    </div>
+
+    <div class="sp-section">
+      <h3><span class="t-en">Contact messages</span><span class="t-kn">ಸಂಪರ್ಕ ಸಂದೇಶಗಳು</span></h3>
+      <div style="overflow-x:auto;">
+        <table class="staff" id="sp-messages-table">
+          <thead><tr>
+            <th><span class="t-en">Submitted</span><span class="t-kn">ಸಲ್ಲಿಸಿದ ದಿನಾಂಕ</span></th>
+            <th><span class="t-en">Name</span><span class="t-kn">ಹೆಸರು</span></th>
+            <th><span class="t-en">Phone/Email</span><span class="t-kn">ಫೋನ್/ಇಮೇಲ್</span></th>
+            <th><span class="t-en">Message</span><span class="t-kn">ಸಂದೇಶ</span></th>
+            <th id="sp-msg-delete-th" class="sp-hidden"><span class="t-en">Delete</span><span class="t-kn">ಅಳಿಸಿ</span></th>
+          </tr></thead>
+          <tbody id="sp-messages-body"></tbody>
+        </table>
+        <p id="sp-messages-empty" class="sp-empty sp-hidden"><span class="t-en">No messages yet.</span><span class="t-kn">ಇನ್ನೂ ಯಾವುದೇ ಸಂದೇಶಗಳಿಲ್ಲ.</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <span><span class="t-en">&copy; </span><span>2026</span><span class="t-en"> PM Shri Karnataka Public School Betasur</span><span class="t-kn">&copy; <span>2026</span> ಪಿ.ಎಂ.ಶ್ರೀ ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಬೆಟಸೂರ</span></span>
+    <span class="t-en">A Government of Karnataka school &middot; Dept. of School Education</span>
+    <span class="t-kn">ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಶಾಲೆ &middot; ಶಾಲಾ ಶಿಕ್ಷಣ ಇಲಾಖೆ</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="staff-portal.js"></script>
+</body>
+</html>
