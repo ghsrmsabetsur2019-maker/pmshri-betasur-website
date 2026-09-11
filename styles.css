@@ -567,7 +567,7 @@ section{position:relative;}
 .hero-stats b{font-size:1.45rem;}
 .hero-photo{
   border-radius:34px; border:1px solid rgba(255,255,255,.66); box-shadow:0 30px 70px rgba(9,46,39,.24); position:relative;
-  transform:rotate(1.5deg); overflow:visible; background:none;
+  overflow:visible; background:none;
 }
 .hero-photo img{border-radius:34px; filter:saturate(1.07) contrast(1.04);}
 .hero-photo::before{
