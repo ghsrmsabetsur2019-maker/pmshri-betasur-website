@@ -162,7 +162,7 @@ function submitContactMessage(e) {
 // in the HTML if this isn't configured yet, or if the fetch fails.
 // Expected columns: Date, Text (English), Text (Kannada), Show(yes/no, optional)
 // ---------------------------------------------------------------------
-const NOTICES_CSV_URL = 'PASTE_YOUR_PUBLISHED_NOTICES_CSV_URL_HERE';
+const NOTICES_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwVHxWjsXG9_PEKat5V1LVEgYNtzUIjmdAiL71fwWCtUL4-poIuAHE2_zUKJxhY2Uphv7jmHvCuSOf/pub?gid=1700599320&single=true&output=csv';
 
 function parseCSV(text) {
   const rows = [];
