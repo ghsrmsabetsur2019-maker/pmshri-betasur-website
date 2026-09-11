@@ -628,3 +628,24 @@ table.staff th{background:#eff8f4;}
 }
 @media (max-width:520px){.hero-stats{grid-template-columns:1fr}.hero-actions .btn-wow{width:100%; justify-content:center;}.principal-note{padding:24px; border-radius:24px;}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important; transition:none!important; scroll-behavior:auto!important;}.reveal-on-scroll{opacity:1; transform:none;}}
+.hero-photo-group{display:flex; gap:14px; align-items:stretch;}
+.hero-photo-group .hero-photo{flex:1.4;}
+.hero-collage{flex:1; position:relative; min-height:260px;}
+.polaroid{
+  position:absolute; background:#fff; padding:8px 8px 24px; border-radius:6px;
+  box-shadow:0 12px 28px rgba(0,0,0,.2); width:78%;
+  transition:transform .3s ease, box-shadow .3s ease;
+  cursor:pointer;
+}
+.polaroid img{width:100%; height:auto; display:block; border-radius:2px;}
+.polaroid.p1{top:0; right:0; transform:rotate(-4deg); z-index:2;}
+.polaroid.p2{bottom:0; left:0; transform:rotate(5deg); z-index:1;}
+.polaroid:hover{
+  transform:rotate(0deg) scale(1.18);
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+  z-index:5;
+}
+@media (max-width:760px){
+  .hero-photo-group{flex-direction:column;}
+  .hero-collage{min-height:220px; margin-top:10px;}
+}
