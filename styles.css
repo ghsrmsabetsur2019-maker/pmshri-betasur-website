@@ -568,6 +568,12 @@ section{position:relative;}
   border-radius:34px; border:1px solid rgba(255,255,255,.66); box-shadow:0 30px 70px rgba(9,46,39,.24); position:relative;
   overflow:visible; background:none;
 }
+.hero-photo{
+  transition: transform .3s ease;
+}
+.hero-photo:hover{
+  transform: rotate(1.5deg) scale(1.06);
+}
 .hero-photo img{border-radius:34px; filter:saturate(1.07) contrast(1.04);}
 .hero-photo::before{
   content:"Learning that rises"; position:absolute; left:-22px; bottom:24px; z-index:2;
