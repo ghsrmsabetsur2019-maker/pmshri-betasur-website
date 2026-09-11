@@ -140,7 +140,7 @@ html[data-lang="kn"] .t-en{display:none;}
 .sidebar-widget a.ext:hover{text-decoration:underline;}
 .sidebar-widget .mini-date{font-family:'IBM Plex Mono', monospace; color:var(--brick); font-size:0.72rem; display:block;}
 
-/* Dark mode (accessibility toggle). Applied to <html> (not <body>) so
+/* Dark mode (accessibility toggle). Applied to <> (not <body>) so
    the preference-sync script in <head> can switch it on before first
    paint, with no flash on page navigation. Overrides the core palette
    variables plus every hardcoded light-background spot below, so the
@@ -151,6 +151,9 @@ html.dark{
   --sky:#1D2C29; --mint:#22332E; --line:rgba(255,255,255,.14);
   --shadow-soft:0 18px 50px rgba(0,0,0,.45); --shadow-card:0 12px 32px rgba(0,0,0,.4);
 }
+html.dark h1,html.dark h2,html.dark h3{color:var(--ink);}
+html.dark .hero-stats b{color:var(--ink);}
+html.dark .apply-status-ok{color.var(green);}
 html.dark body{
   background: linear-gradient(180deg,#0F1518 0%, var(--bg) 48%, #0B1012 100%);
 }
