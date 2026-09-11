@@ -153,7 +153,7 @@ html.dark{
 }
 html.dark h1,html.dark h2,html.dark h3{color:var(--ink);}
 html.dark .hero-stats b{color:var(--ink);}
-html.dark .apply-status-ok{color.var(green);}
+html.dark .apply-status-ok{color.var(--green);}
 html.dark body{
   background: linear-gradient(180deg,#0F1518 0%, var(--bg) 48%, #0B1012 100%);
 }
