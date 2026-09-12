@@ -264,10 +264,17 @@
 </a>
 <script src="script.js"></script>
 <script>
-  setTimeout(function () {
-    var s = document.getElementById('splash-screen');
-    if (s) { s.style.display = 'none'; }
-  }, 2200);
+  (function () {
+    var splash = document.getElementById('splash-screen');
+    if (!splash) return;
+    function hideSplash() {
+      splash.style.transition = 'opacity 0.4s ease';
+      splash.style.opacity = '0';
+      setTimeout(function () { splash.style.display = 'none'; }, 400);
+    }
+    setTimeout(hideSplash, 2000);
+    splash.addEventListener('click', hideSplash);
+  })();
 </script>
 </body>
 </html>
