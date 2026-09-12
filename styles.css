@@ -633,3 +633,8 @@ table.staff th{background:#eff8f4;}
 }
 @media (max-width:520px){.hero-stats{grid-template-columns:1fr}.hero-actions .btn-wow{width:100%; justify-content:center;}.principal-note{padding:24px; border-radius:24px;}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important; transition:none!important; scroll-behavior:auto!important;}.reveal-on-scroll{opacity:1; transform:none;}}
+@media (max-width:760px){
+  .topbar{display:none;}
+  .a11y-bar{font-size:0.65rem; padding:3px 0;}
+  .a11y-bar button{padding:1px 6px;}
+}
