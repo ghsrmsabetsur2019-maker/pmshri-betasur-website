@@ -658,3 +658,5 @@ table.staff th{background:#eff8f4;}
 
 .btn-spinner{display:inline-block; width:14px; height:14px; border:2px solid rgba(255,255,255,.4); border-top-color:#fff; border-radius:50%; animation:spin .6s linear infinite; margin-right:8px; vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg);}}
+
+.last-updated{font-size:0.8rem; color:var(--ink-soft); margin-top:8px;}
