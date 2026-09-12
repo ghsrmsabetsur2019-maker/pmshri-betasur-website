@@ -660,3 +660,30 @@ table.staff th{background:#eff8f4;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
 .last-updated{font-size:0.8rem; color:var(--ink-soft); margin-top:8px;}
+#splash-screen{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--green); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+  animation: splash-fade-out 0.6s ease 1.8s forwards;
+}
+.splash-logo{
+  width:120px; height:120px; border-radius:50%; background:#fff; padding:10px; box-shadow:0 0 0 4px var(--mustard);
+  animation: splash-pop 0.7s cubic-bezier(.34,1.56,.64,1);
+}
+.splash-text{
+  color:#F5F0E1; font-family:var(--font-serif,serif); font-size:1.1rem; text-align:center; padding:0 20px;
+  opacity:0; animation: splash-text-in 0.6s ease 0.4s forwards;
+}
+@keyframes splash-pop{
+  0%{ transform:scale(0.4); opacity:0; }
+  100%{ transform:scale(1); opacity:1; }
+}
+@keyframes splash-text-in{
+  to{ opacity:1; }
+}
+@keyframes splash-fade-out{
+  to{ opacity:0; visibility:hidden; pointer-events:none; }
+}
+@media (prefers-reduced-motion: reduce){
+  #splash-screen{ animation: splash-fade-out 0.3s ease 0.6s forwards; }
+  .splash-logo, .splash-text{ animation:none; opacity:1; }
+}
