@@ -645,3 +645,9 @@ table.staff th{background:#eff8f4;}
 .achievements-list{list-style:none; margin-top:8px;padding-left:0;}
 .achievements-list li{padding:8px 0; border-bottom:1px solid var(--line); display:flex; gap:10px; align-items:baseline; font-size:0.9rem;}
 .achievements-list li:last-child{border-bottom:none;}
+
+.staff-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; margin-top:16px;}
+.staff-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:12px; padding:18px; text-align:center;}
+.staff-card img{width:88px; height:88px; border-radius:50%; object-fit:cover; margin-bottom:10px;}
+.staff-card h4{font-size:0.95rem; margin-bottom:4px;}
+.staff-card p{font-size:0.82rem; color:var(--ink-soft); margin:0;}
