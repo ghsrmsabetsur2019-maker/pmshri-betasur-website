@@ -61,7 +61,7 @@ function submitApplication(e) {
     hp: ''
   };
 
-  if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="btn-spinner"></span>Submitting…'; }
   if (statusEl) { statusEl.textContent = ''; statusEl.className = 'apply-status'; }
 
   fetch(FORM_ENDPOINT, {
@@ -123,7 +123,7 @@ function submitContactMessage(e) {
     hp: ''
   };
 
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+if (btn) { btn.disabled = true; btn.innerHTML = '<span class="btn-spinner"></span>Sending…'; }
   if (statusEl) { statusEl.textContent = ''; statusEl.className = 'apply-status'; }
 
   fetch(FORM_ENDPOINT, {
