@@ -22,6 +22,12 @@ const STAFF_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwyh7PN0D7R
 const STAFF_SESSION_KEY = 'pmshri_staff_session';
 
 let staffSession = null; // { token, role, fullName, expiresAt }
+let lastApplications = [];
+let lastStatusOptions = [];
+let lastMessages = [];
+let lastRole = '';
+let appSearchTerm = '';
+let appSortMode = 'grade';
 
 function staffNotConfigured_() {
   return STAFF_FORM_ENDPOINT.indexOf('PASTE_YOUR') === 0;
@@ -42,6 +48,20 @@ function initStaffPortal() {
     staffSession = saved;
     showApp_();
     loadStaffData_();
+  }
+    const searchInput = document.getElementById('sp-app-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      appSearchTerm = searchInput.value.trim();
+      renderApplications_(lastApplications, lastStatusOptions, lastRole);
+    });
+  }
+  const sortSelect = document.getElementById('sp-app-sort');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      appSortMode = sortSelect.value;
+      renderApplications_(lastApplications, lastStatusOptions, lastRole);
+    });
   }
 }
 
@@ -151,8 +171,12 @@ function loadStaffData_() {
       if (!json || json.result !== 'success') {
         throw new Error((json && json.message) || 'Session expired.');
       }
-      renderApplications_(json.applications || [], json.statusOptions || [], json.role);
-      renderMessages_(json.messages || [], json.role);
+           lastApplications = json.applications || [];
+      lastStatusOptions = json.statusOptions || [];
+      lastMessages = json.messages || [];
+      lastRole = json.role;
+      renderApplications_(lastApplications, lastStatusOptions, lastRole);
+      renderMessages_(lastMessages, lastRole);
       loading.classList.add('sp-hidden');
       dataEl.classList.remove('sp-hidden');
     })
@@ -181,29 +205,55 @@ function renderApplications_(applications, statusOptions, role) {
   if (deleteTh) deleteTh.classList.toggle('sp-hidden', !isPrincipal);
   body.innerHTML = '';
 
-  if (!applications.length) {
+  let filtered = applications;
+  if (appSearchTerm) {
+    const term = appSearchTerm.toLowerCase();
+    filtered = applications.filter((a) =>
+      ((a['Student name'] || '') + ' ' + (a['Parent/Guardian name'] || '')).toLowerCase().indexOf(term) !== -1
+    );
+  }
+
+  const summaryEl = document.getElementById('sp-app-summary');
+  if (summaryEl) {
+    const pendingCount = filtered.filter((a) => (a['Status'] || '').toLowerCase() === 'pending').length;
+    summaryEl.textContent = filtered.length + ' applications · ' + pendingCount + ' pending';
+  }
+
+  if (!filtered.length) {
     empty.classList.remove('sp-hidden');
     return;
   }
   empty.classList.add('sp-hidden');
 
-  // Group into the same sections as the Sheet: one per grade, plus a
-  // catch-all "Other" bucket for anything unexpected.
+  const colCount = isPrincipal ? 6 : 5;
+
+  if (appSortMode !== 'grade') {
+    const sorted = filtered.slice().sort((a, b) => compareApplications_(a, b, appSortMode));
+    sorted.forEach((a) => body.appendChild(applicationRow_(a, statusOptions, isPrincipal)));
+    return;
+  }
+
   const groups = {};
   APPLICATION_GRADE_ORDER.forEach((g) => { groups[g] = []; });
   groups.Other = [];
-  applications.forEach((a) => {
+  filtered.forEach((a) => {
     const g = (a['Grade applying for'] || '').toString().trim();
     (groups[g] ? groups[g] : groups.Other).push(a);
   });
 
-  const colCount = isPrincipal ? 6 : 5;
   APPLICATION_GRADE_ORDER.concat(['Other']).forEach((g) => {
     const rows = groups[g];
-    if (!rows.length) return; // skip empty sections so the table isn't cluttered
+    if (!rows.length) return;
     body.appendChild(sectionHeaderRow_(g, rows.length, colCount));
     rows.forEach((a) => body.appendChild(applicationRow_(a, statusOptions, isPrincipal)));
   });
+}
+
+function compareApplications_(a, b, mode) {
+  if (mode === 'date') return new Date(b['Submitted at'] || 0) - new Date(a['Submitted at'] || 0);
+  if (mode === 'name') return (a['Student name'] || '').localeCompare(b['Student name'] || '');
+  if (mode === 'status') return (a['Status'] || '').localeCompare(b['Status'] || '');
+  return 0;
 }
 
 function sectionHeaderRow_(label, count, colCount) {
@@ -358,6 +408,29 @@ function cell_(text) {
   const td = document.createElement('td');
   td.textContent = text;
   return td;
+}
+
+function exportApplicationsCSV() {
+  exportCSV_(lastApplications, ['Submitted at', 'Student name', 'Parent/Guardian name', 'Contact number', 'Email', 'Grade applying for', 'Status'], 'applications.csv');
+}
+function exportMessagesCSV() {
+  exportCSV_(lastMessages, ['Submitted at', 'Name', 'Phone or email', 'Message'], 'messages.csv');
+}
+function exportCSV_(rows, columns, filename) {
+  if (!rows.length) { alert('Nothing to export yet.'); return; }
+  const escape = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  const lines = [columns.map(escape).join(',')];
+  rows.forEach((r) => { lines.push(columns.map((c) => escape(r[c])).join(',')); });
+  const csv = lines.join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 window.addEventListener('DOMContentLoaded', initStaffPortal);
