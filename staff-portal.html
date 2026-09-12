@@ -131,7 +131,18 @@
   <div id="sp-load-error" class="sp-error sp-hidden"></div>
 
   <div id="sp-data" class="sp-hidden">
-    <h3><span class="t-en">Admission applications</span><span class="t-kn">ಪ್ರವೇಶ ಅರ್ಜಿಗಳು</span></h3>
+        <h3><span class="t-en">Admission applications</span><span class="t-kn">ಪ್ರವೇಶ ಅರ್ಜಿಗಳು</span></h3>
+    <div class="sp-toolbar-row">
+      <input type="text" id="sp-app-search" class="sp-search-input" placeholder="Search by student or parent name...">
+      <select id="sp-app-sort" class="sp-sort-select">
+        <option value="grade">Group by grade</option>
+        <option value="date">Sort by date</option>
+        <option value="name">Sort by student name</option>
+        <option value="status">Sort by status</option>
+      </select>
+      <span id="sp-app-summary" class="sp-summary"></span>
+      <button type="button" class="sp-export-btn" onclick="exportApplicationsCSV()">Export CSV</button>
+    </div>
     <div style="overflow-x:auto;">
       <table class="staff" id="sp-applications-table">
         <thead><tr>
@@ -148,7 +159,11 @@
     </div>
 
     <div class="sp-section">
-      <h3><span class="t-en">Contact messages</span><span class="t-kn">ಸಂಪರ್ಕ ಸಂದೇಶಗಳು</span></h3>
+           <h3><span class="t-en">Contact messages</span><span class="t-kn">ಸಂಪರ್ಕ ಸಂದೇಶಗಳು</span></h3>
+      <div class="sp-toolbar-row">
+        <span></span>
+        <button type="button" class="sp-export-btn" onclick="exportMessagesCSV()">Export CSV</button>
+      </div>
       <div style="overflow-x:auto;">
         <table class="staff" id="sp-messages-table">
           <thead><tr>
