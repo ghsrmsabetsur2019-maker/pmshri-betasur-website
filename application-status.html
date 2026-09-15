@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kn" data-lang="kn">
+<head>
+<script>(function(){try{var d=document.documentElement;var lang=localStorage.getItem('pmshri-lang');if(lang==='en'||lang==='kn')d.setAttribute('data-lang',lang);var fs=localStorage.getItem('pmshri-fontstep');if(fs!==null){var step=Math.max(-2,Math.min(3,parseInt(fs,10)||0));d.style.fontSize=(16+step*1.5)+'px';}if(localStorage.getItem('pmshri-theme')==='dark')d.classList.add('dark');}catch(e){}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="icons/favicon-32.png" type="image/png">
+<meta name="description" content="Check your admission application status at PM Shri Karnataka Public School Betasur.">
+<title>Application Status | PM Shri Karnataka Public School Betasur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Noto+Sans+Kannada:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1C4B3E">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+</head>
+<body>
+<a class="skip-link" href="#main-content"><span class="t-en">Skip to main content</span><span class="t-kn">ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ</span></a>
+<div class="a11y-bar">
+  <div class="wrap">
+    <span class="t-en">Text size:</span><span class="t-kn">ಅಕ್ಷರ ಗಾತ್ರ:</span>
+    <button onclick="changeFontSize(-1)" aria-label="Decrease text size">A-</button>
+    <button onclick="resetFontSize()" aria-label="Reset text size">A</button>
+    <button onclick="changeFontSize(1)" aria-label="Increase text size">A+</button>
+    <span class="divider-y"></span>
+    <button id="darkModeToggle" onclick="toggleDarkMode()" aria-pressed="false"><span class="t-en">Dark mode</span><span class="t-kn">ಡಾರ್ಕ್ ಮೋಡ್</span></button>
+  </div>
+</div>
+<div class="topbar">
+  <div class="wrap">
+    <span><span class="tag">UDISE:</span> 29011201001</span>
+    <span class="t-en">PM Shri Karnataka Public School Betasur &middot; Savadatti Taluk, Belagavi District</span>
+    <span class="t-kn">ಪಿ.ಎಂ.ಶ್ರೀ ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಬೆಟಸೂರ &middot; ಸವದತ್ತಿ ತಾಲ್ಲೂಕು, ಬೆಳಗಾವಿ ಜಿಲ್ಲೆ</span>
+  </div>
+</div>
+<header class="main">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img class="crest" src="images/pm-shri-logo.png" alt="PM Shri School Logo">
+      <div>
+        <h1><span class="t-en">PM Shri Karnataka Public School Betasur</span><span class="t-kn">ಪಿ.ಎಂ.ಶ್ರೀ ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಬೆಟಸೂರ</span></h1>
+        <p class="t-en">Government of Karnataka &middot; Dept. of School Education</p>
+        <p class="t-kn">ಕರ್ನಾಟಕ ಸರ್ಕಾರ &middot; ಶಾಲಾ ಶಿಕ್ಷಣ ಇಲಾಖೆ</p>
+      </div>
+    </a>
+    <nav>
+      <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
+      <ul id="mainNav">
+        <li><a href="index.html"><span class="t-en">Home</span><span class="t-kn">ಮುಖಪುಟ</span></a></li>
+        <li><a href="about.html"><span class="t-en">About</span><span class="t-kn">ನಮ್ಮ ಬಗ್ಗೆ</span></a></li>
+        <li><a href="academics.html"><span class="t-en">Academics</span><span class="t-kn">ಶೈಕ್ಷಣಿಕ</span></a></li>
+        <li><a class="active" href="admissions.html"><span class="t-en">Admissions</span><span class="t-kn">ಪ್ರವೇಶ</span></a></li>
+        <li><a href="facilities.html"><span class="t-en">Facilities</span><span class="t-kn">ಸೌಲಭ್ಯಗಳು</span></a></li>
+        <li><a href="staff.html"><span class="t-en">Staff</span><span class="t-kn">ಸಿಬ್ಬಂದಿ</span></a></li>
+        <li><a href="notices.html"><span class="t-en">Notices</span><span class="t-kn">ಸೂಚನೆಗಳು</span></a></li>
+        <li><a href="downloads.html"><span class="t-en">Downloads</span><span class="t-kn">ಡೌನ್‌ಲೋಡ್‌ಗಳು</span></a></li>
+        <li><a href="gallery.html"><span class="t-en">Gallery</span><span class="t-kn">ಗ್ಯಾಲರಿ</span></a></li>
+        <li><a href="contact.html"><span class="t-en">Contact</span><span class="t-kn">ಸಂಪರ್ಕ</span></a></li>
+        <li><a href="staff-portal.html"><span class="t-en">Staff Portal</span><span class="t-kn">ಸಿಬ್ಬಂದಿ ಪೋರ್ಟಲ್</span></a></li>
+        <li><button id="langToggle" onclick="toggleLang()">English</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<section id="main-content"><div class="wrap" style="max-width:600px; padding-top:32px; padding-bottom:60px;">
+  <div class="page-banner" style="padding:0; background:none; border:none;">
+    <span class="eyebrow t-en">Admissions</span><span class="eyebrow t-kn">ಪ್ರವೇಶ</span>
+    <h2><span class="t-en">Check application status</span><span class="t-kn">ಅರ್ಜಿ ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</span></h2>
+  </div>
+  <p class="t-en">Enter the phone number used on your admission application.</p>
+  <p class="t-kn">ನಿಮ್ಮ ಪ್ರವೇಶ ಅರ್ಜಿಯಲ್ಲಿ ಬಳಸಿದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ.</p>
+  <form id="status-check-form" onsubmit="return checkApplicationStatus(event)" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+    <input type="tel" id="sc-phone" pattern="[0-9]{10}" placeholder="10-digit phone number" required style="flex:1; min-width:200px; padding:10px 14px; border-radius:8px; border:1px solid var(--line); font-family:inherit;">
+    <button type="submit" class="btn-primary">
+      <span class="t-en">Check status</span><span class="t-kn">ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</span>
+    </button>
+  </form>
+  <div id="sc-result" style="margin-top:24px;"></div>
+</div></section>
+<footer>
+  <div class="wrap">
+    <span><span class="t-en">&copy; </span><span>2026</span><span class="t-en"> PM Shri Karnataka Public School Betasur</span><span class="t-kn">&copy; <span>2026</span> ಪಿ.ಎಂ.ಶ್ರೀ ಕರ್ನಾಟಕ ಪಬ್ಲಿಕ್ ಶಾಲೆ ಬೆಟಸೂರ</span></span>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script>
+  const STATUS_ENDPOINT = FORM_ENDPOINT; // reuses the same Apps Script URL already set in script.js
+  function checkApplicationStatus(e) {
+    e.preventDefault();
+    const phone = document.getElementById('sc-phone').value.trim();
+    const resultBox = document.getElementById('sc-result');
+    resultBox.innerHTML = '<p>Checking…</p>';
+    fetch(STATUS_ENDPOINT, {
+      method: 'POST',
+      body: new URLSearchParams({ formType: 'checkStatus', contactNumber: phone })
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.result !== 'success' || !data.applications || !data.applications.length) {
+          resultBox.innerHTML = '<p style="color:var(--red,#B3402A);">No application found for that phone number. Please check the number or contact the school office.</p>';
+          return;
+        }
+        resultBox.innerHTML = data.applications.map((a) =>
+          '<div class="card" style="margin-bottom:12px;"><strong>' + a.studentName + '</strong> — Class ' + a.gradeApplying +
+          '<br>Status: <strong>' + a.status + '</strong></div>'
+        ).join('');
+      })
+      .catch(() => { resultBox.innerHTML = '<p style="color:var(--red,#B3402A);">Something went wrong. Please try again later.</p>'; });
+    return false;
+  }
+</script>
+</body>
+</html>
