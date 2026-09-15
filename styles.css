@@ -689,7 +689,7 @@ table.staff th{background:#eff8f4;}
   width:100vw !important; height:100vh !important;
   z-index:99999 !important;
   background:var(--green) !important;
-  display:flex !important; flex-direction:column !important;
+  display:flex; flex-direction:column !important;
   align-items:center !important; justify-content:center !important;
   gap:20px !important;
 }
