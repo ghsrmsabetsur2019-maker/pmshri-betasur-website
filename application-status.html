@@ -62,20 +62,21 @@
     </nav>
   </div>
 </header>
-<section id="main-content"><div class="wrap" style="max-width:600px; padding-top:32px; padding-bottom:60px;">
-  <div class="page-banner" style="padding:0; background:none; border:none;">
+<section id="main-content"><div class="wrap" style="max-width:600px; padding-top:40px; padding-bottom:60px;">
+  <div class="status-hero">
+    <div class="status-hero-icon">🔍</div>
     <span class="eyebrow t-en">Admissions</span><span class="eyebrow t-kn">ಪ್ರವೇಶ</span>
     <h2><span class="t-en">Check application status</span><span class="t-kn">ಅರ್ಜಿ ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</span></h2>
+    <p class="t-en">Enter the phone number used on your admission application.</p>
+    <p class="t-kn">ನಿಮ್ಮ ಪ್ರವೇಶ ಅರ್ಜಿಯಲ್ಲಿ ಬಳಸಿದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ.</p>
   </div>
-  <p class="t-en">Enter the phone number used on your admission application.</p>
-  <p class="t-kn">ನಿಮ್ಮ ಪ್ರವೇಶ ಅರ್ಜಿಯಲ್ಲಿ ಬಳಸಿದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ.</p>
-  <form id="status-check-form" onsubmit="return checkApplicationStatus(event)" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-    <input type="tel" id="sc-phone" pattern="[0-9]{10}" placeholder="10-digit phone number" required style="flex:1; min-width:200px; padding:10px 14px; border-radius:8px; border:1px solid var(--line); font-family:inherit;">
-    <button type="submit" class="btn-primary">
+  <form id="status-check-form" onsubmit="return checkApplicationStatus(event)" class="status-form">
+    <input type="tel" id="sc-phone" pattern="[0-9]{10}" placeholder="10-digit phone number" required>
+    <button type="submit" class="btn-primary" id="sc-submit-btn">
       <span class="t-en">Check status</span><span class="t-kn">ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</span>
     </button>
   </form>
-  <div id="sc-result" style="margin-top:24px;"></div>
+  <div id="sc-result" class="status-results"></div>
 </div></section>
 <footer>
   <div class="wrap">
@@ -84,28 +85,50 @@
 </footer>
 <script src="script.js"></script>
 <script>
-  const STATUS_ENDPOINT = FORM_ENDPOINT; // reuses the same Apps Script URL already set in script.js
+  const STATUS_ENDPOINT = FORM_ENDPOINT;
+  const STATUS_META = {
+    'Pending':        { color: '#C08A1E', bg: '#FBF1DA', icon: '⏳' },
+    'Contacted':      { color: '#2A6FA8', bg: '#E3EEF7', icon: '📞' },
+    'Enrolled':       { color: '#1C6B4A', bg: '#DFF1E7', icon: '✅' },
+    'Not proceeding': { color: '#A13A3A', bg: '#F7E4E4', icon: '✕' }
+  };
   function checkApplicationStatus(e) {
     e.preventDefault();
     const phone = document.getElementById('sc-phone').value.trim();
     const resultBox = document.getElementById('sc-result');
-    resultBox.innerHTML = '<p>Checking…</p>';
+    const btn = document.getElementById('sc-submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="btn-spinner"></span>Checking…';
+    resultBox.innerHTML = '';
     fetch(STATUS_ENDPOINT, {
       method: 'POST',
       body: new URLSearchParams({ formType: 'checkStatus', contactNumber: phone })
     })
       .then((r) => r.json())
       .then((data) => {
+        btn.disabled = false;
+        btn.innerHTML = '<span class="t-en">Check status</span><span class="t-kn">ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</span>';
         if (data.result !== 'success' || !data.applications || !data.applications.length) {
-          resultBox.innerHTML = '<p style="color:var(--red,#B3402A);">No application found for that phone number. Please check the number or contact the school office.</p>';
+          resultBox.innerHTML = '<div class="status-empty"><span class="status-empty-icon">📭</span><p>No application found for that phone number.<br>Please check the number or contact the school office.</p></div>';
           return;
         }
-        resultBox.innerHTML = data.applications.map((a) =>
-          '<div class="card" style="margin-bottom:12px;"><strong>' + a.studentName + '</strong> — Class ' + a.gradeApplying +
-          '<br>Status: <strong>' + a.status + '</strong></div>'
-        ).join('');
+        resultBox.innerHTML = data.applications.map((a) => {
+          const meta = STATUS_META[a.status] || { color: '#555', bg: '#eee', icon: '•' };
+          return '<div class="status-card">' +
+            '<div class="status-card-icon" style="background:' + meta.bg + '; color:' + meta.color + ';">' + meta.icon + '</div>' +
+            '<div class="status-card-info">' +
+              '<h4>' + a.studentName + '</h4>' +
+              '<p>Class ' + a.gradeApplying + '</p>' +
+            '</div>' +
+            '<span class="status-pill" style="background:' + meta.bg + '; color:' + meta.color + ';">' + a.status + '</span>' +
+          '</div>';
+        }).join('');
       })
-      .catch(() => { resultBox.innerHTML = '<p style="color:var(--red,#B3402A);">Something went wrong. Please try again later.</p>'; });
+      .catch(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<span class="t-en">Check status</span><span class="t-kn">ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</span>';
+        resultBox.innerHTML = '<div class="status-empty"><span class="status-empty-icon">⚠️</span><p>Something went wrong. Please try again later.</p></div>';
+      });
     return false;
   }
 </script>
