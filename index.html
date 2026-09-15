@@ -267,11 +267,7 @@
   (function () {
     var splash = document.getElementById('splash-screen');
     if (!splash) return;
-    function hideSplash() {
-      splash.style.transition = 'opacity 0.4s ease';
-      splash.style.opacity = '0';
-      setTimeout(function () { splash.style.display = 'none'; }, 400);
-    }
+    function hideSplash() { splash.style.display = 'none'; }
     setTimeout(hideSplash, 2000);
     splash.addEventListener('click', hideSplash);
   })();
