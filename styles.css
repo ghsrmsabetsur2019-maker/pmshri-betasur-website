@@ -670,7 +670,6 @@ table.staff th{background:#eff8f4;}
   display:flex !important; flex-direction:column !important;
   align-items:center !important; justify-content:center !important;
   gap:20px !important;
-  animation: splash-fade-out 0.6s ease 1.8s forwards;
 }
 .splash-logo{
   width:140px !important; height:140px !important;
