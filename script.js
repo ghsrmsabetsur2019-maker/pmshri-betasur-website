@@ -351,3 +351,30 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.setAttribute('aria-expanded', 'false');
   }));
 });
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counters = document.querySelectorAll('.count-up');
+  if (!counters.length) return;
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10) || 0;
+    const prefix = el.dataset.prefix || '';
+    if (reduceMotion) { el.textContent = prefix + target; return; }
+    const duration = 1000;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      el.textContent = prefix + Math.round(progress * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (!('IntersectionObserver' in window)) { counters.forEach(animateCounter); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) { animateCounter(entry.target); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach((el) => io.observe(el));
+});
