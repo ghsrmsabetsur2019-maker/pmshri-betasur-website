@@ -92,11 +92,50 @@
     <h2><span class="t-en">Life at school</span><span class="t-kn">ಶಾಲಾ ಜೀವನ</span></h2>
   </div>
 </div>
+<div class="gallery-filters">
+  <button type="button" class="gallery-filter active" data-filter="all">
+    <span class="t-en">All</span><span class="t-kn">ಎಲ್ಲಾ</span>
+  </button>
+  <button type="button" class="gallery-filter" data-filter="sports">
+    <span class="t-en">Sports Day</span><span class="t-kn">ಕ್ರೀಡಾ ದಿನ</span>
+  </button>
+  <button type="button" class="gallery-filter" data-filter="independence">
+    <span class="t-en">Independence Day</span><span class="t-kn">ಸ್ವಾತಂತ್ರ್ಯ ದಿನ</span>
+  </button>
+  <button type="button" class="gallery-filter" data-filter="classroom">
+    <span class="t-en">Classrooms</span><span class="t-kn">ತರಗತಿ ಕೋಣೆಗಳು</span>
+  </button>
+</div>
 <div class="gallery-grid">
-  <div class="ph t-en">[FILL: photo]</div><div class="ph t-kn">[ಫೋಟೋ]</div>
-  <div class="ph t-en">[FILL: photo]</div><div class="ph t-kn">[ಫೋಟೋ]</div>
-  <div class="ph t-en">[FILL: photo]</div><div class="ph t-kn">[ಫೋಟೋ]</div>
-  <div class="ph t-en">[FILL: photo]</div><div class="ph t-kn">[ಫೋಟೋ]</div>
+  <div class="gallery-item" data-category="sports">
+    <img src="images/gallery/sports-01.jpg" alt="Sports Day" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('.gallery-item').style.display='none'">
+    <p class="gallery-caption t-en">[FILL: caption]</p><p class="gallery-caption t-kn">[FILL: ಶೀರ್ಷಿಕೆ]</p>
+  </div>
+  <div class="gallery-item" data-category="sports">
+    <img src="images/gallery/sports-02.jpg" alt="Sports Day" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('.gallery-item').style.display='none'">
+    <p class="gallery-caption t-en">[FILL: caption]</p><p class="gallery-caption t-kn">[FILL: ಶೀರ್ಷಿಕೆ]</p>
+  </div>
+  <div class="gallery-item" data-category="independence">
+    <img src="images/gallery/independence-01.jpg" alt="Independence Day" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('.gallery-item').style.display='none'">
+    <p class="gallery-caption t-en">[FILL: caption]</p><p class="gallery-caption t-kn">[FILL: ಶೀರ್ಷಿಕೆ]</p>
+  </div>
+  <div class="gallery-item" data-category="independence">
+    <img src="images/gallery/independence-02.jpg" alt="Independence Day" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('.gallery-item').style.display='none'">
+    <p class="gallery-caption t-en">[FILL: caption]</p><p class="gallery-caption t-kn">[FILL: ಶೀರ್ಷಿಕೆ]</p>
+  </div>
+  <div class="gallery-item" data-category="classroom">
+    <img src="images/gallery/classroom-01.jpg" alt="Classroom" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('.gallery-item').style.display='none'">
+    <p class="gallery-caption t-en">[FILL: caption]</p><p class="gallery-caption t-kn">[FILL: ಶೀರ್ಷಿಕೆ]</p>
+  </div>
+  <div class="gallery-item" data-category="classroom">
+    <img src="images/gallery/classroom-02.jpg" alt="Classroom" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('.gallery-item').style.display='none'">
+    <p class="gallery-caption t-en">[FILL: caption]</p><p class="gallery-caption t-kn">[FILL: ಶೀರ್ಷಿಕೆ]</p>
+  </div>
+</div>
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <button type="button" class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <p id="lightbox-caption"></p>
 </div>
 <h3 style="margin-top:32px;"><span class="t-en">Video</span><span class="t-kn">ವೀಡಿಯೊ</span></h3>
 <p><span class="t-en">Video coming soon &mdash; footage from an upcoming school event will be added ....</span><span class="t-kn">ವೀಡಿಯೊ ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ — ಶಾಲೆಯ ಮುಂಬರುವ ಕಾರ್ಯಕ್ರಮವೊಂದರ ದೃಶ್ಯಾವಳಿಗಳನ್ನು ಇದರಲ್ಲಿ ಸೇರಿಸಲಾಗುವುದು....</span></p>
