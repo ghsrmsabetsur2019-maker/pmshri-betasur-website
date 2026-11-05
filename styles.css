@@ -856,3 +856,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .vmv-block p{ margin:0; font-style:italic; line-height:1.6; }
 .vmv-values{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
 .vmv-values li{ line-height:1.5; }
+
+
+.vmv-grid{ margin-top:20px; }
+.vmv-values-card{ margin-top:20px; }
+.vmv-values{ list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.vmv-values li{ line-height:1.5; }
+.card p{ line-height:1.6; }
