@@ -400,14 +400,18 @@ function closeLightbox(e) {
 window.addEventListener('DOMContentLoaded', () => {
   const filters = document.querySelectorAll('.gallery-filter');
   const items = document.querySelectorAll('.gallery-item');
+  if (!items.length) return;
+  function applyFilter(filter) {
+    items.forEach((item) => {
+      item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+    });
+  }
   filters.forEach((btn) => {
     btn.addEventListener('click', () => {
       filters.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      items.forEach((item) => {
-        item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
-      });
+      applyFilter(btn.dataset.filter);
     });
   });
+  applyFilter('all'); // show every photo when the page first opens
 });
