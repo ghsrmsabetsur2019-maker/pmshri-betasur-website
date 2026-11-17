@@ -895,3 +895,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .card ul.benefit-list{ columns:2; column-gap:32px; }
   .card ul.benefit-list li{ break-inside:avoid; }
 }
+
+@media (min-width:761px){
+  .facilities-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+  .facilities-grid .card{ flex:0 1 calc((100% - 40px) / 3); }
+}
+.facilities-grid .card p:not(:last-child){ margin-bottom:10px; }
