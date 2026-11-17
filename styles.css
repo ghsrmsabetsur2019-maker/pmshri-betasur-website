@@ -889,3 +889,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (min-width:761px){ .benefit-list{ columns:2; column-gap:32px; } }
 
 .t-note{ font-size:0.85rem; color:var(--ink-soft); margin-top:8px; }
+
+
+@media (min-width:761px){
+  .card ul.benefit-list{ columns:2; column-gap:32px; }
+  .card ul.benefit-list li{ break-inside:avoid; }
+}
