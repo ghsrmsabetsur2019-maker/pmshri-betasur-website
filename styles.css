@@ -921,3 +921,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 html.dark .hero-duo-label{ background:rgba(20,26,28,.86); color:#F5F0E1; }
 @media (min-width:1500px){ .hero-duo{ margin-right:-90px; } }
+
+
+@media (max-width:760px){
+  .hero-duo{ gap:14px; width:100%; margin-right:0; }
+  .hero-duo-item{ border-radius:20px; aspect-ratio:16/10; }
+  .hero-duo-item:hover{ transform:none; }
+  .hero-duo-label{ left:10px; bottom:10px; padding:6px 10px; font-size:.65rem; }
+}
