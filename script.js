@@ -415,3 +415,90 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   applyFilter('all'); // show every photo when the page first opens
 });
+
+
+
+
+
+// "Listen" button: reads the visible text of the page aloud, in the language chosen on the site.
+window.addEventListener('DOMContentLoaded', function () {
+  if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') return;
+  var synth = window.speechSynthesis;
+  var speaking = false;
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'listen-btn';
+  btn.innerHTML = '<span class="listen-icon"></span><span class="listen-text"></span>';
+  document.body.appendChild(btn);
+
+  function isKannada() { return document.documentElement.getAttribute('data-lang') !== 'en'; }
+
+  function updateLabel() {
+    var kn = isKannada();
+    btn.setAttribute('aria-label', kn ? 'ಈ ಪುಟವನ್ನು ಕೇಳಿ' : 'Listen to this page');
+    btn.setAttribute('aria-pressed', speaking ? 'true' : 'false');
+    btn.querySelector('.listen-icon').textContent = speaking ? '\u23F9' : '\uD83D\uDD0A';
+    btn.querySelector('.listen-text').textContent = speaking ? (kn ? 'ನಿಲ್ಲಿಸಿ' : 'Stop') : (kn ? 'ಕೇಳಿ' : 'Listen');
+  }
+
+  function pickVoice(lang) {
+    var voices = synth.getVoices() || [];
+    var base = lang.slice(0, 2).toLowerCase();
+    for (var i = 0; i < voices.length; i++) { if (voices[i].lang === lang) return { voice: voices[i], any: voices.length }; }
+    for (var j = 0; j < voices.length; j++) { if (voices[j].lang.toLowerCase().indexOf(base) === 0) return { voice: voices[j], any: voices.length }; }
+    return { voice: null, any: voices.length };
+  }
+
+  // Break long text into short pieces; some browsers stop reading long passages.
+  function chunkText(text) {
+    var sentences = text.replace(/\s+/g, ' ').trim().match(/[^.!?\u0964]+[.!?\u0964]*/g) || [];
+    var chunks = [], cur = '';
+    sentences.forEach(function (s) {
+      s = s.trim();
+      if (!s) return;
+      if ((cur + ' ' + s).length > 180 && cur) { chunks.push(cur); cur = s; }
+      else { cur = cur ? cur + ' ' + s : s; }
+    });
+    if (cur) chunks.push(cur);
+    return chunks;
+  }
+
+  function stop() { synth.cancel(); speaking = false; updateLabel(); }
+
+  function start() {
+    var root = document.getElementById('main-content') || document.body;
+    var column = root.querySelector('.with-sidebar > div');
+    var text = (column || root).innerText || '';
+    var chunks = chunkText(text);
+    if (!chunks.length) return;
+    var lang = isKannada() ? 'kn-IN' : 'en-IN';
+    var found = pickVoice(lang);
+    if (!found.voice && found.any > 0) {
+      alert(isKannada()
+        ? 'ಈ ಸಾಧನದಲ್ಲಿ ಕನ್ನಡ ಧ್ವನಿ ಲಭ್ಯವಿಲ್ಲ. / Kannada voice is not available on this device.'
+        : 'English voice is not available on this device.');
+      return;
+    }
+    synth.cancel();
+    speaking = true;
+    updateLabel();
+    chunks.forEach(function (chunk, idx) {
+      var u = new SpeechSynthesisUtterance(chunk);
+      u.lang = lang;
+      if (found.voice) u.voice = found.voice;
+      u.rate = 0.95;
+      if (idx === chunks.length - 1) {
+        u.onend = function () { speaking = false; updateLabel(); };
+        u.onerror = function () { speaking = false; updateLabel(); };
+      }
+      synth.speak(u);
+    });
+  }
+
+  btn.addEventListener('click', function () { if (speaking) stop(); else start(); });
+  var langBtn = document.getElementById('langToggle');
+  if (langBtn) langBtn.addEventListener('click', function () { stop(); setTimeout(updateLabel, 50); });
+  window.addEventListener('beforeunload', function () { synth.cancel(); });
+  updateLabel();
+});
