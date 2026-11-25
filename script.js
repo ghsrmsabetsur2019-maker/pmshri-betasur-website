@@ -419,3 +419,39 @@ window.addEventListener('DOMContentLoaded', () => {
 (function () { var s = document.createElement('script'); s.src = 'chatbot.js'; s.defer = true; document.body.appendChild(s); })();
 
 
+// WhatsApp "Share" button on each notice (notices page).
+window.addEventListener('DOMContentLoaded', function () {
+  var list = document.getElementById('notices-list-full');
+  if (!list) return;
+
+  function isVisible(el) { return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length); }
+
+  function share(li) {
+    var date = li.querySelector('.notice-date');
+    var text = '';
+    li.querySelectorAll('span').forEach(function (s) {
+      if (!text && s !== date && isVisible(s)) text = s.textContent.trim();
+    });
+    var msg = '\uD83D\uDCE2 ' + (date ? date.textContent.trim() + ' \u2014 ' : '') + text +
+      '\n\nPM Shri Karnataka Public School Betasur\n' + location.href.split('#')[0];
+    window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  }
+
+  function addButtons() {
+    list.querySelectorAll('li').forEach(function (li) {
+      if (li.querySelector('.notice-share')) return;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'notice-share';
+      b.setAttribute('aria-label', 'Share this notice on WhatsApp');
+      b.title = 'WhatsApp';
+      b.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6.3 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 2c5.5 0 10 4.5 10 10s-4.5 10-10 10c-2.1 0-4-.6-5.6-1.7l-.4-.2-4.6 1.1 1.2-4.4-.3-.5C5.5 18.1 5 16.6 5 15c0-5.5 4.5-10 11-10zm-3.8 5.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.7 1.2 2.9c.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.5.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4-.3-.1-1.7-.9-2-1-.3-.1-.4-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.6-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.5z"/></svg>';
+      b.addEventListener('click', function () { share(li); });
+      li.appendChild(b);
+    });
+  }
+
+  addButtons();
+  new MutationObserver(addButtons).observe(list, { childList: true });
+});
+
