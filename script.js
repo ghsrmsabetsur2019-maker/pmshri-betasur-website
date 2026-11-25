@@ -416,4 +416,6 @@ window.addEventListener('DOMContentLoaded', () => {
   applyFilter('all'); // show every photo when the page first opens
 });
 
+(function () { var s = document.createElement('script'); s.src = 'chatbot.js'; s.defer = true; document.body.appendChild(s); })();
+
 
