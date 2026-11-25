@@ -931,3 +931,13 @@ html.dark .hero-duo-label{ background:rgba(20,26,28,.86); color:#F5F0E1; }
 }
 
 
+.notice-share{
+  margin-left:auto; flex-shrink:0; align-self:flex-start;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:50%; border:none; cursor:pointer;
+  background:#25D366; color:#fff;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.notice-share svg{ width:20px; height:20px; fill:currentColor; }
+.notice-share:hover{ transform:scale(1.08); box-shadow:0 6px 14px rgba(37,211,102,.4); }
+@media print{ .notice-share{ display:none; } }
